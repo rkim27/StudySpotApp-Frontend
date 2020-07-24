@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import InsertSchool from './components/InsertSchool';
+import InsertSchool from './components/insert_form/InsertSchool';
+import Header from './components/layout/Header';
 
 function App() {
 	return (
 		<Router>
 			<div className="App">
+				<Header></Header>
 				<Route exact path="/">
-					Hello from root
+					<div className="container">
+						<h2>Welcome</h2>
+					</div>
 				</Route>
 				{/* Exact path will only match that path pattern alone, not /insert which has a /*/}
 				<Route path="/insert">

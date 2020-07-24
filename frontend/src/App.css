@@ -13,6 +13,11 @@ body {
 	display: none;
 }
 
-.building {
-	flex: '1';
+.form {
+	flex: 1;
+	display: inline-block;
+}
+
+.container {
+	text-align: center;
 }

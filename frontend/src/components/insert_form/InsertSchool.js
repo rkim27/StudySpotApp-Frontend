@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InsertBuilding from './InsertBuilding';
+import '../../App.css';
 
 export default function InsertSchool(props) {
 	//parent component of imput form
@@ -9,33 +10,35 @@ export default function InsertSchool(props) {
 	const [rooms, setrooms] = useState([]);
 	const [libraries, setlibraries] = useState([]);
 	const [hideBuilding, sethideBuilding] = useState('hidden'); //originally hide building input form until school is input
+	const [btnVal, setbtnVal] = useState('Submit');
 	const updateName = (e) => {
-		setschoolName(e.target.value);
+		setschoolName(e.target.value); //update state as user types in school name
 	};
 	const submitName = (e) => {
 		e.preventDefault();
-		sethideBuilding('building');
-		console.log(e.target);
+		setbtnVal('Update');
+		sethideBuilding('form'); //reveal building form once school name submitted
 	};
 	return (
-		<React.Fragment>
+		<div className="container">
 			<form onSubmit={submitName}>
 				<input
 					type="text"
 					placeholder="School Name"
 					value={schoolName}
 					onChange={updateName}
-					style={{ flex: '1' }}
+					className="form"
+					style={{ width: '250px' }}
 				></input>
 				<input
 					type="submit"
-					value="Submit"
-					style={{ flex: '1' }}
+					value={btnVal}
+					className="form"
 					name="submitSchool"
 				></input>
 			</form>
 			<InsertBuilding hideBuilding={hideBuilding}></InsertBuilding>
-		</React.Fragment>
+		</div>
 	);
 }
 
