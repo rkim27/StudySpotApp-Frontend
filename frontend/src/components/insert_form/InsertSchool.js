@@ -11,22 +11,24 @@ export default function InsertSchool(props) {
 	const [libraries, setlibraries] = useState([]);
 	const [hideBuilding, sethideBuilding] = useState('hidden'); //originally hide building input form until school is input
 	const [btnVal, setbtnVal] = useState('Submit');
-	const updateName = (e) => {
+
+	const updateSchoolName = (e) => {
 		setschoolName(e.target.value); //update state as user types in school name
 	};
 	const submitName = (e) => {
 		e.preventDefault();
-		setbtnVal('Update');
+		setbtnVal('Update'); //display update on button upon submit, tells user they can update entered school name
 		sethideBuilding('form'); //reveal building form once school name submitted
 	};
 	return (
 		<div className="container">
 			<form onSubmit={submitName}>
+				<h3>{schoolName}</h3>
 				<input
 					type="text"
 					placeholder="School Name"
 					value={schoolName}
-					onChange={updateName}
+					onChange={updateSchoolName}
 					className="form"
 					style={{ width: '250px' }}
 				></input>
