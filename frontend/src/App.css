@@ -1,0 +1,18 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 3px;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.4;
+}
+
+.hidden {
+	display: none;
+}
+
+.building {
+	flex: '1';
+}
