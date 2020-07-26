@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import InsertBuilding from './InsertBuilding';
+import AddBuilding from './AddBuilding';
 import '../../App.css';
 
 export default function InsertSchool(props) {
@@ -26,20 +26,22 @@ export default function InsertSchool(props) {
 				<h3>{schoolName}</h3>
 				<input
 					type="text"
-					placeholder="School Name"
+					placeholder="Insert School Name"
 					value={schoolName}
 					onChange={updateSchoolName}
 					className="form"
-					style={{ width: '250px' }}
+					style={{ width: '400px', height: '35px' }}
 				></input>
 				<input
 					type="submit"
 					value={btnVal}
 					className="form"
 					name="submitSchool"
+					style={{ height: '35px' }}
 				></input>
 			</form>
-			<InsertBuilding hideBuilding={hideBuilding}></InsertBuilding>
+			{/*Add building button*/}
+			<AddBuilding hide={hideBuilding}></AddBuilding>
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../App.css';
 
 export default function Header() {
 	const underline = (e) => {
@@ -33,8 +34,8 @@ export default function Header() {
 }
 
 const headerStyle = {
-	background: '#333',
-	color: '#fff',
+	backgroundColor: '#000000',
+	color: '#CEB888',
 	textAlign: 'center',
 	padding: '10px',
 };
