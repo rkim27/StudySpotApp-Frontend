@@ -7,13 +7,14 @@ export default function InsertBuilding(props) {
 	const [name, setname] = useState('');
 	const [placeBtn, setplaceBtn] = useState('hidden');
 	const [btnVal, setbtnVal] = useState('Submit');
+	const schoolId = props.schoolId;
 	const updateBuildingName = (e) => {
 		setname(e.target.value); //update state as user types in school name
 	};
 	const submit = (e) => {
 		e.preventDefault();
-		setplaceBtn('form');
-		setbtnVal('Update');
+		setplaceBtn('form'); //reveal button to add room or library
+		setbtnVal('Update'); //set button to display 'Update'
 	};
 	return (
 		<div className="container">
@@ -33,8 +34,20 @@ export default function InsertBuilding(props) {
 					name="submitBuilding"
 					style={{ height: '31px' }}
 				></input>
+				<input
+					type="button"
+					value="Delete"
+					className="form"
+					style={{ height: '31px' }}
+					onClick={() => props.del(props.id)}
+				></input>
 			</form>
 			<AddPlace hide={placeBtn}></AddPlace>
 		</div>
 	);
 }
+
+InsertBuilding.propTypes = {
+	id: PropTypes.number.isRequired,
+	del: PropTypes.func.isRequired,
+};
