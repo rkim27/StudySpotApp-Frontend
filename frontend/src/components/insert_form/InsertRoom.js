@@ -70,7 +70,14 @@ export default function InsertRoom(props) {
 					value="Delete"
 					className="form"
 					style={{ height: '28px' }}
-					onClick={() => props.del(props.delId, false)}
+					onClick={() =>
+						props.del(
+							props.delId,
+							false,
+							btnVal === 'Update' ? true : false,
+							id
+						)
+					}
 				></input>
 			</form>
 		</div>

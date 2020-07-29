@@ -61,7 +61,9 @@ export default function InsertLibrary(props) {
 					value="Delete"
 					className="form"
 					style={{ height: '28px' }}
-					onClick={() => props.del(props.delId, true)}
+					onClick={() =>
+						props.del(props.delId, true, btnVal === 'Update' ? true : false, id)
+					}
 				></input>
 			</form>
 		</div>

@@ -55,7 +55,9 @@ export default function InsertBuilding(props) {
 					value="Delete"
 					className="form"
 					style={{ height: '31px' }}
-					onClick={() => props.del(props.delId)}
+					onClick={() =>
+						props.del(props.delId, btnVal === 'Update' ? true : false, id)
+					}
 				></input>
 			</form>
 			<AddPlace hide={placeBtn} buildId={id}></AddPlace>

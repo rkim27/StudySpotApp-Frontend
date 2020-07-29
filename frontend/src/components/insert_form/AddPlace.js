@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../../App.css';
 import InsertRoom from './InsertRoom';
 import InsertLibrary from './InsertLibrary';
+import Delete from './functions/Delete';
 
 export default function AddPlace(props) {
 	//hold all references to libraries and rooms for one building
@@ -34,14 +35,20 @@ export default function AddPlace(props) {
 		setkey((num) => num + 1);
 	};
 
-	const del = (id, lib) => {
+	const del = (key, lib, update, id) => {
 		if (lib) {
+			if (update) {
+				Delete(id, 'libraries');
+			}
 			setlibraries((prev) => {
-				return prev.filter((form) => form.props.delId !== id);
+				return prev.filter((form) => form.props.delId !== key);
 			});
 		} else {
+			if (update) {
+				Delete(id, 'rooms');
+			}
 			setrooms((prev) => {
-				return prev.filter((form) => form.props.delId !== id);
+				return prev.filter((form) => form.props.delId !== key);
 			});
 		}
 	};
