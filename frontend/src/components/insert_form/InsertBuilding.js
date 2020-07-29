@@ -2,29 +2,45 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../../App.css';
 import AddPlace from './AddPlace';
+import Submit from './functions/Submit';
 
 export default function InsertBuilding(props) {
 	const [name, setname] = useState('');
 	const [placeBtn, setplaceBtn] = useState('hidden');
 	const [btnVal, setbtnVal] = useState('Submit');
+	const [id, setid] = useState(null);
 	const schoolId = props.schoolId;
-	const updateBuildingName = (e) => {
-		setname(e.target.value); //update state as user types in school name
-	};
-	const submit = (e) => {
+	const submitName = (e) => {
+		//boilerplate to get things working, turn this into a function too
 		e.preventDefault();
-		setplaceBtn('form'); //reveal button to add room or library
-		setbtnVal('Update'); //set button to display 'Update'
+		if (name !== '') {
+			const update = btnVal === 'Update' ? true : false;
+			const sId = btnVal === 'Update' ? null : schoolId; //don't need schoolId for updates
+			setplaceBtn('form'); //reveal button to add room or library
+			setbtnVal('Update'); //set button to display 'Update'
+			Submit(
+				`http://localhost:3002/insert/building`,
+				{
+					id: id,
+					building: name,
+					schoolId: sId,
+					update: update,
+				},
+				setid
+			);
+		} else {
+			alert('Please enter a building name');
+		}
 	};
 	return (
 		<div className="container">
 			<h4>{name}</h4>
-			<form onSubmit={submit}>
+			<form onSubmit={submitName}>
 				<input
 					type="text"
 					placeholder="Building Name"
 					className="form"
-					onChange={updateBuildingName}
+					onChange={(e) => setname(e.target.value)}
 					style={{ width: '350px', height: '31px' }}
 				></input>
 				<input
@@ -39,15 +55,16 @@ export default function InsertBuilding(props) {
 					value="Delete"
 					className="form"
 					style={{ height: '31px' }}
-					onClick={() => props.del(props.id)}
+					onClick={() => props.del(props.delId)}
 				></input>
 			</form>
-			<AddPlace hide={placeBtn}></AddPlace>
+			<AddPlace hide={placeBtn} buildId={id}></AddPlace>
 		</div>
 	);
 }
 
 InsertBuilding.propTypes = {
-	id: PropTypes.number.isRequired,
+	schoolId: PropTypes.number,
 	del: PropTypes.func.isRequired,
+	delId: PropTypes.number.isRequired,
 };

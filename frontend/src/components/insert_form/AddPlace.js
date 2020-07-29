@@ -5,19 +5,47 @@ import InsertRoom from './InsertRoom';
 import InsertLibrary from './InsertLibrary';
 
 export default function AddPlace(props) {
-	const [numLib, setnumLib] = useState(0); //number of library forms
-	const [numRoom, setnumRoom] = useState(0); //number of room forms
-	const libraries = [];
-	const rooms = [];
+	//hold all references to libraries and rooms for one building
+	const [libraries, setlibraries] = useState([]);
+	const [rooms, setrooms] = useState([]);
+	const [key, setkey] = useState(0);
 	const add = (lib) => {
-		lib ? setnumLib((num) => num + 1) : setnumRoom((num) => num + 1);
+		if (lib) {
+			setlibraries([
+				...libraries,
+				<InsertLibrary
+					buildId={props.buildId}
+					key={key}
+					delId={key}
+					del={del}
+				></InsertLibrary>,
+			]);
+		} else {
+			setrooms([
+				...rooms,
+				<InsertRoom
+					buildId={props.buildId}
+					key={key}
+					delId={key}
+					del={del}
+				></InsertRoom>,
+			]);
+		}
+		setkey((num) => num + 1);
 	};
-	for (let i = 0; i < numLib; i++) {
-		libraries.push(<InsertLibrary></InsertLibrary>);
-	}
-	for (let i = 0; i < numRoom; i++) {
-		rooms.push(<InsertRoom></InsertRoom>);
-	}
+
+	const del = (id, lib) => {
+		if (lib) {
+			setlibraries((prev) => {
+				return prev.filter((form) => form.props.delId !== id);
+			});
+		} else {
+			setrooms((prev) => {
+				return prev.filter((form) => form.props.delId !== id);
+			});
+		}
+	};
+
 	return (
 		<div className="container">
 			<input
@@ -40,4 +68,5 @@ export default function AddPlace(props) {
 
 AddPlace.propTypes = {
 	hide: PropTypes.string.isRequired,
+	buildId: PropTypes.number,
 };
