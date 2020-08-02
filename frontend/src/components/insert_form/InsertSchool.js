@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-//import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import AddBuilding from './AddBuilding';
 import '../../App.css';
 import Submit from './functions/Submit';
@@ -40,14 +39,18 @@ export default function InsertSchool(props) {
 					value={schoolName}
 					onChange={(e) => setschoolName(e.target.value)}
 					className="form"
-					style={{ width: '400px', height: '35px' }}
+					style={{
+						width: '400px',
+						height: '35px',
+						fontSize: '15px',
+					}}
 				></input>
 				<input
 					type="submit"
 					value={btnVal}
 					className="form"
 					name="submitSchool"
-					style={{ height: '35px' }}
+					style={{ height: '35px', fontSize: '15px' }}
 				></input>
 			</form>
 			{/*Add building button*/}
@@ -55,5 +58,3 @@ export default function InsertSchool(props) {
 		</div>
 	);
 }
-
-InsertSchool.propTypes = {};
