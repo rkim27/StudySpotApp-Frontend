@@ -19,6 +19,7 @@ export default function AddPlace(props) {
 					key={key}
 					delId={key}
 					del={del}
+					schoolId={props.schoolId}
 				></InsertLibrary>,
 			]);
 		} else {
@@ -29,6 +30,7 @@ export default function AddPlace(props) {
 					key={key}
 					delId={key}
 					del={del}
+					schoolId={props.schoolId}
 				></InsertRoom>,
 			]);
 		}
@@ -60,12 +62,14 @@ export default function AddPlace(props) {
 				onClick={() => add(true)}
 				className={props.hide}
 				value="Library"
+				style={{ fontSize: '14px' }}
 			></input>
 			<input
 				type="button"
 				onClick={() => add(false)}
 				className={props.hide}
 				value="Room"
+				style={{ fontSize: '14px' }}
 			></input>
 			{libraries}
 			{rooms}
@@ -76,4 +80,5 @@ export default function AddPlace(props) {
 AddPlace.propTypes = {
 	hide: PropTypes.string.isRequired,
 	buildId: PropTypes.number,
+	schoolId: PropTypes.number,
 };

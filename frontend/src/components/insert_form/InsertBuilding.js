@@ -16,8 +16,10 @@ export default function InsertBuilding(props) {
 		if (name !== '') {
 			const update = btnVal === 'Update' ? true : false;
 			const sId = btnVal === 'Update' ? null : schoolId; //don't need schoolId for updates
-			setplaceBtn('form'); //reveal button to add room or library
-			setbtnVal('Update'); //set button to display 'Update'
+			if (btnVal !== 'Update') {
+				setplaceBtn('form'); //reveal button to add room or library
+				setbtnVal('Update'); //set button to display 'Update'
+			}
 			Submit(
 				`http://localhost:3002/insert/building`,
 				{
@@ -41,26 +43,31 @@ export default function InsertBuilding(props) {
 					placeholder="Building Name"
 					className="form"
 					onChange={(e) => setname(e.target.value)}
-					style={{ width: '350px', height: '31px' }}
+					style={{
+						width: '50%',
+						height: '31px',
+						paddingLeft: '2px',
+						fontSize: '14.5px',
+					}}
 				></input>
 				<input
 					type="submit"
 					value={btnVal}
 					className="form"
 					name="submitBuilding"
-					style={{ height: '31px' }}
+					style={{ height: '31px', fontSize: '14.5px' }}
 				></input>
 				<input
 					type="button"
 					value="Delete"
 					className="form"
-					style={{ height: '31px' }}
+					style={{ height: '31px', fontSize: '14.5px' }}
 					onClick={() =>
 						props.del(props.delId, btnVal === 'Update' ? true : false, id)
 					}
 				></input>
 			</form>
-			<AddPlace hide={placeBtn} buildId={id}></AddPlace>
+			<AddPlace hide={placeBtn} buildId={id} schoolId={schoolId}></AddPlace>
 		</div>
 	);
 }

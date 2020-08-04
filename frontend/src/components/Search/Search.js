@@ -26,14 +26,12 @@ export default function Search() {
 	}, []);
 
 	const hover = (e) => {
-		//e.target.style.textDecoration = 'underline';
 		e.target.style.color = '#CEB888';
 	};
 	const noHover = (e) => {
-		//e.target.style.textDecoration = 'none';
 		e.target.style.color = 'black';
 	};
-
+	console.log('render');
 	//display all schools if a search term has been entered, otherwise display filtered results
 	const displayList = search === '' ? schools : filtered;
 	return (

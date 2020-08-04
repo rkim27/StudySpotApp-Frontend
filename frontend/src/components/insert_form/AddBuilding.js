@@ -40,6 +40,7 @@ export default function AddBuilding(props) {
 				onClick={() => add(buildings)}
 				className={props.hide}
 				value="Add Building"
+				style={{ fontSize: '15px' }}
 			></input>
 			{buildings}
 		</div>

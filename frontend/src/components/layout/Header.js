@@ -34,8 +34,8 @@ export default function Header() {
 }
 
 const headerStyle = {
-	backgroundColor: '#000000',
-	color: '#CEB888',
+	backgroundColor: '#2e3e4d',
+	color: '#f6f6f8',
 	textAlign: 'center',
 	padding: '10px',
 };

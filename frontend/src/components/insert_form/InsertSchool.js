@@ -13,8 +13,10 @@ export default function InsertSchool(props) {
 		e.preventDefault();
 		if (schoolName !== '') {
 			const update = btnVal === 'Update' ? true : false; //updating name if already submitted once
-			setbtnVal('Update'); //display update on button upon submit, tells user they can update entered school name
-			sethideBuilding('form'); //reveal building form once school name submitted
+			if (btnVal !== 'Update') {
+				setbtnVal('Update'); //display update on button upon submit, tells user they can update entered school name
+				sethideBuilding('form'); //reveal building form once school name submitted
+			}
 			//send id, name, and if updating or inserting new record
 			Submit(
 				'http://localhost:3002/insert',
@@ -40,9 +42,10 @@ export default function InsertSchool(props) {
 					onChange={(e) => setschoolName(e.target.value)}
 					className="form"
 					style={{
-						width: '400px',
+						width: '60%',
 						height: '35px',
-						fontSize: '15px',
+						fontSize: '16px',
+						paddingLeft: '2px',
 					}}
 				></input>
 				<input
@@ -50,7 +53,7 @@ export default function InsertSchool(props) {
 					value={btnVal}
 					className="form"
 					name="submitSchool"
-					style={{ height: '35px', fontSize: '15px' }}
+					style={{ height: '35px', fontSize: '16px', paddingTop: '3px' }}
 				></input>
 			</form>
 			{/*Add building button*/}
