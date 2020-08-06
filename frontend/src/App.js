@@ -5,12 +5,15 @@ import InsertSchool from './components/insert_form/InsertSchool';
 import Header from './components/layout/Header';
 import Search from './components/Search/Search';
 import School from './components/Search/School';
+import Room from './components/Search/Room';
+import Library from './components/Search/Library';
 
 function App() {
 	return (
 		<Router>
 			<div className="App">
 				<Header></Header>
+				{/* Exact path will only match that path pattern alone, not /insert which has a /*/}
 				<Route exact path="/">
 					<div className="container">
 						<h2>Welcome</h2>
@@ -18,12 +21,10 @@ function App() {
 					</div>
 				</Route>
 				<Route path="/school/:id" component={School}></Route>
-				{/* Exact path will only match that path pattern alone, not /insert which has a /*/}
-				<Route path="/insert">
-					{' '}
-					{/*Page to insert schools*/}
-					<InsertSchool></InsertSchool>
-				</Route>
+				<Route path="/room/:id" component={Room}></Route>
+				<Route path="/library/:id" component={Library}></Route>
+				{/*Page to insert schools*/}
+				<Route path="/insert" component={InsertSchool}></Route>
 				{/*<Route path="/insert/:id"></Route>  this would render both /insert and /insert/:id, to avoid this one can do exact path or use a switch for nested routes*/}
 			</div>
 		</Router>

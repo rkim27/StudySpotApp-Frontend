@@ -60,11 +60,27 @@ export default function School(props) {
 	//display rooms and libraries, have a drop down menu to filter based on buildings
 	return (
 		<div className="container">
-			<h1>{schoolName}</h1>
+			<h1 style={{ marginBottom: '1px' }}>{schoolName}</h1>
+			<Link
+				to={`/edit/${id}`}
+				type="button"
+				style={{
+					color: 'black',
+					fontSize: '14px',
+					textDecoration: 'underline',
+				}}
+				onMouseOver={hover}
+				onMouseOut={noHover}
+			>
+				Edit School
+			</Link>
+			<br />
+
 			<DropdownButton
 				title="Filter By Building"
 				variant="secondary"
 				id="myDropdown"
+				style={{ display: 'inline-block' }}
 			>
 				{buildings.map((building) => {
 					return (
@@ -82,6 +98,7 @@ export default function School(props) {
 					None
 				</Dropdown.Item>
 			</DropdownButton>
+
 			<div className="row">
 				<div className="column">
 					<h2 style={{ textDecoration: 'underline' }}>Rooms</h2>

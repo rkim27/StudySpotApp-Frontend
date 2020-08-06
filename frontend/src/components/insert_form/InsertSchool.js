@@ -53,7 +53,11 @@ export default function InsertSchool(props) {
 					value={btnVal}
 					className="form"
 					name="submitSchool"
-					style={{ height: '35px', fontSize: '16px', paddingTop: '3px' }}
+					style={{
+						height: '35px',
+						fontSize: '16px',
+						paddingBottom: '2.5px',
+					}}
 				></input>
 			</form>
 			{/*Add building button*/}
