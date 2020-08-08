@@ -62,7 +62,7 @@ export default function AddPlace(props) {
 				onClick={() => add(true)}
 				className={props.hide}
 				value="Library"
-				style={{ fontSize: '14px' }}
+				style={{ fontSize: '14px', marginRight: '-.7px' }}
 			></input>
 			<input
 				type="button"

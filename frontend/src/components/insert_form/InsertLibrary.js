@@ -38,47 +38,43 @@ export default function InsertLibrary(props) {
 	return (
 		<div className="container">
 			<form onSubmit={submitName}>
-				<input
-					type="text"
-					placeholder="Library Name"
-					className="form"
-					onChange={(e) => setname(e.target.value)}
-					style={{
-						width: '45%',
-						height: '28px',
-						paddingLeft: '2px',
-						fontSize: '13.8px',
-					}}
-				></input>
-				<br></br>
-				<input
-					type="text"
-					placeholder="Floor"
-					className="form"
-					onChange={(e) => setfloorNum(e.target.value)}
-					style={{
-						width: '8.5%',
-						height: '28px',
-						marginTop: '1px',
-						paddingLeft: '2px',
-						fontSize: '13.8px',
-					}}
-				></input>
-				<input
-					type="submit"
-					value={btnVal}
-					className="form"
-					style={{ height: '28px', paddingTop: '2px', fontSize: '13.8px' }}
-				></input>
-				<input
-					type="button"
-					value="Delete"
-					className="form"
-					style={{ height: '28px', paddingTop: '2px', fontSize: '13.8px' }}
-					onClick={() =>
-						props.del(props.delId, true, btnVal === 'Update' ? true : false, id)
-					}
-				></input>
+				<div>
+					<span title="Library Name">
+						<input
+							type="text"
+							placeholder="Library Name"
+							className="form librarytext"
+							onChange={(e) => setname(e.target.value)}
+						></input>
+					</span>
+					<br></br>
+					<span title="Floor">
+						<input
+							type="text"
+							placeholder="Floor"
+							className="form libraryfloor"
+							onChange={(e) => setfloorNum(e.target.value)}
+						></input>
+					</span>
+					<input
+						type="submit"
+						value={btnVal}
+						className="form librarybutton"
+					></input>
+					<input
+						type="button"
+						value="Delete"
+						className="form librarybutton"
+						onClick={() =>
+							props.del(
+								props.delId,
+								true,
+								btnVal === 'Update' ? true : false,
+								id
+							)
+						}
+					></input>
+				</div>
 			</form>
 		</div>
 	);

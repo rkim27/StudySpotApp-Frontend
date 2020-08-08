@@ -38,34 +38,30 @@ export default function InsertBuilding(props) {
 		<div className="container">
 			<h4>{name}</h4>
 			<form onSubmit={submitName}>
-				<input
-					type="text"
-					placeholder="Building Name"
-					className="form"
-					onChange={(e) => setname(e.target.value)}
-					style={{
-						width: '50%',
-						height: '31px',
-						paddingLeft: '2px',
-						fontSize: '14.5px',
-					}}
-				></input>
-				<input
-					type="submit"
-					value={btnVal}
-					className="form"
-					name="submitBuilding"
-					style={{ height: '31px', fontSize: '14.5px' }}
-				></input>
-				<input
-					type="button"
-					value="Delete"
-					className="form"
-					style={{ height: '31px', fontSize: '14.5px' }}
-					onClick={() =>
-						props.del(props.delId, btnVal === 'Update' ? true : false, id)
-					}
-				></input>
+				<div>
+					<span title="Building Name">
+						<input
+							type="text"
+							placeholder="Building Name"
+							className="form buildingtext"
+							onChange={(e) => setname(e.target.value)}
+						></input>
+					</span>
+					<input
+						type="submit"
+						value={btnVal}
+						className="form buildingbutton"
+						name="submitBuilding"
+					></input>
+					<input
+						type="button"
+						value="Delete"
+						className="form buildingbutton"
+						onClick={() =>
+							props.del(props.delId, btnVal === 'Update' ? true : false, id)
+						}
+					></input>
+				</div>
 			</form>
 			<AddPlace hide={placeBtn} buildId={id} schoolId={schoolId}></AddPlace>
 		</div>

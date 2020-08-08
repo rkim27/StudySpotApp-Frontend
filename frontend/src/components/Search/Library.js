@@ -5,16 +5,45 @@ import '../../App.css';
 export default function Library(props) {
 	const id = props.match.params.id;
 	const [info, setinfo] = useState({});
-	const [seats, setseats] = useState(0);
+
 	useEffect(() => {
 		axios.get(`http://localhost:3002/search/library/${id}`).then((res) => {
 			setinfo(res.data[0]);
-			setseats(res.data[0].numSeats);
 		});
 	}, [id]);
-	const update = (e) => {
-		setseats(e.target.value);
+	useEffect(() => {
+		axios
+			.post(
+				`http://localhost:3002/search/updatelibrary/${id}`,
+				{ avail: info.numSeats },
+				{
+					headers: { 'content-Type': 'application/json' },
+				}
+			)
+			.then((res) => {
+				console.log(res);
+			});
+	}, [info, id]);
+	const updateAvail = (e) => {
+		const value = Number(e.target.value);
+		setinfo((prev) => {
+			return { ...prev, numSeats: value };
+		});
 	};
+	let seats;
+	switch (info.numSeats) {
+		case 1:
+			seats = '0-10';
+			break;
+		case 2:
+			seats = '11-20';
+			break;
+		case 3:
+			seats = '21-30';
+			break;
+		default:
+			seats = '30+';
+	}
 	return (
 		<div className="container">
 			<h1>Placeholder</h1>
@@ -25,21 +54,46 @@ export default function Library(props) {
 
 				<div style={{ fontSize: '14px' }}>Floor: {info.floor}</div>
 				<div>
-					Number of Open Seats:{' '}
-					<div style={{ textDecoration: 'underline' }}>{seats}</div>
+					Number of Open Seats: <div>{seats}</div>
 				</div>
 				<div style={{ borderTop: '1.5px solid #ceb888' }}>
+					Number above off?
+					<br />
 					Change Number of Open Seats
 				</div>
 				<form>
-					<input type="radio" id="choice1" name="avail" />
-					<label for="choice1">0-10 </label>
-					<input type="radio" id="choice2" name="avail" />
-					<label for="choice2">11-20 </label>
-					<input type="radio" id="choice3" name="avail" />
-					<label for="choice3">21-30 </label>
-					<input type="radio" id="choice4" name="avail" />
-					<label for="choice4">30+ </label>
+					<input
+						type="radio"
+						id="choice1"
+						name="avail"
+						value="1"
+						onChange={updateAvail}
+					/>
+					<label htmlFor="choice1">0-10 </label>
+					<input
+						type="radio"
+						id="choice2"
+						name="avail"
+						value="2"
+						onChange={updateAvail}
+					/>
+					<label htmlFor="choice2">11-20 </label>
+					<input
+						type="radio"
+						id="choice3"
+						name="avail"
+						value="3"
+						onChange={updateAvail}
+					/>
+					<label htmlFor="choice3">21-30 </label>
+					<input
+						type="radio"
+						id="choice4"
+						name="avail"
+						value="4"
+						onChange={updateAvail}
+					/>
+					<label htmlFor="choice4">30+ </label>
 				</form>
 			</div>
 		</div>

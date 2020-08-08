@@ -35,30 +35,23 @@ export default function InsertSchool(props) {
 		<div className="container">
 			<form onSubmit={submitName}>
 				<h3>{schoolName}</h3>
-				<input
-					type="text"
-					placeholder="Insert School Name"
-					value={schoolName}
-					onChange={(e) => setschoolName(e.target.value)}
-					className="form"
-					style={{
-						width: '60%',
-						height: '35px',
-						fontSize: '16px',
-						paddingLeft: '2px',
-					}}
-				></input>
-				<input
-					type="submit"
-					value={btnVal}
-					className="form"
-					name="submitSchool"
-					style={{
-						height: '35px',
-						fontSize: '16px',
-						paddingBottom: '2.5px',
-					}}
-				></input>
+				<div>
+					<span title="School Name">
+						<input
+							type="text"
+							placeholder="School Name"
+							value={schoolName}
+							onChange={(e) => setschoolName(e.target.value)}
+							className="form schooltext"
+						></input>
+					</span>
+					<input
+						type="submit"
+						value={btnVal}
+						className="form schoolbutton"
+						name="submitSchool"
+					></input>
+				</div>
 			</form>
 			{/*Add building button*/}
 			<AddBuilding hide={hideBuilding} schoolId={schoolId}></AddBuilding>
