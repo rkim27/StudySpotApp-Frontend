@@ -34,24 +34,17 @@ body {
 
 .buildingtext {
 	width: 50%;
-	height: 31px;
+	height: 31.5px;
 	padding-left: 2px;
 	font-size: 14.5px;
 	margin-right: -4px;
 }
 
 .buildingbutton {
-	height: 31x;
+	height: 31.5px;
 	font-size: 14.5px;
 	padding-bottom: 2.5px;
 	margin-right: -1px;
-}
-
-.librarytext {
-	width: 45%;
-	height: 28px;
-	padding-left: 2px;
-	font-size: 13.8px;
 }
 
 .libraryfloor {
@@ -70,7 +63,7 @@ body {
 	margin-right: -0.8px;
 }
 
-.roomtext {
+.placetext {
 	width: 45%;
 	height: 28px;
 	padding-left: 2px;

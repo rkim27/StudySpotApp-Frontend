@@ -7,7 +7,7 @@ import Search from './components/Search/Search';
 import School from './components/Search/School';
 import Room from './components/Search/Room';
 import Library from './components/Search/Library';
-import EditSchool from './components/insert_form/EditSchool';
+import EditSchool from './components/edit_form/EditSchool';
 
 function App() {
 	return (

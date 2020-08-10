@@ -11,6 +11,8 @@ export default function Submit(address, value, setId) {
 			headers: { 'content-Type': 'application/json' },
 		})
 		.then((res) => {
-			setId(res.data.id); //response is the id of record submitted, set that to current id value
+			if (setId !== null) {
+				setId(res.data.id); //response is the id of record submitted, set that to current id value
+			}
 		});
 }

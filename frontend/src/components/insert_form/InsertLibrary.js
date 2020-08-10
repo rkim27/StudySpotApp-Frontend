@@ -43,7 +43,7 @@ export default function InsertLibrary(props) {
 						<input
 							type="text"
 							placeholder="Library Name"
-							className="form librarytext"
+							className="form placetext"
 							onChange={(e) => setname(e.target.value)}
 						></input>
 					</span>

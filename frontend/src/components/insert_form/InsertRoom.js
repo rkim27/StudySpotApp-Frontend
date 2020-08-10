@@ -45,7 +45,7 @@ export default function InsertRoom(props) {
 						<input
 							type="text"
 							placeholder="Room Name"
-							className="form roomtext"
+							className="form placetext"
 							onChange={(e) => setname(e.target.value)}
 						></input>
 					</span>
