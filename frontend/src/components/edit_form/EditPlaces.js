@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../App.css';
+import Delete from '../insert_form/functions/Delete';
 
 export default function EditPlaces(props) {
 	//displays all rooms or libraries for a building once they are loaded
@@ -12,6 +13,14 @@ export default function EditPlaces(props) {
 		newplace[buildId][index][attribute] = value;
 		props.setPlaces(newplace);
 	};
+
+	const del = (id) => {
+		Delete(id, props.type.toLowerCase());
+		props.setPlaces((prev) => {
+			return prev[buildId].filter((place) => place.id !== id);
+		});
+	};
+
 	return (
 		<div className="container">
 			{buildId in props.places ? (
@@ -27,6 +36,7 @@ export default function EditPlaces(props) {
 								key={index}
 								onSubmit={(e) =>
 									//submit parameters differ for rooms and libraries
+									//put all this into sep function, disgusting snippet lol
 									props.submitName(
 										e,
 										props.type === 'Rooms'
@@ -99,8 +109,9 @@ export default function EditPlaces(props) {
 								></input>
 								<input
 									type="button"
-									value="Delete"
+									value="Delete Place"
 									className="form librarybutton"
+									onClick={() => del(place.id)}
 								></input>
 								<hr style={{ borderTop: 'dotted 1px', marginBottom: '-2px' }} />
 							</form>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 import AddBuilding from '../insert_form/AddBuilding';
 import AddPlace from '../insert_form/AddPlace';
 import Submit from '../insert_form/functions/Submit';
 import EditPlaces from './EditPlaces';
+import Delete from '../insert_form/functions/Delete';
 
 export default function EditSchool(props) {
 	const id = props.match.params.id;
@@ -12,6 +14,7 @@ export default function EditSchool(props) {
 	const [schoolName, setschoolName] = useState('');
 	const [libraries, setlibraries] = useState({});
 	const [buildings, setbuildings] = useState([]);
+	const [delSchool, setdelSchool] = useState(false);
 
 	useEffect(() => {
 		//onload get school info once
@@ -69,7 +72,14 @@ export default function EditSchool(props) {
 			}
 		}
 	};
-	return (
+
+	const del = (id) => {
+		Delete(id, 'buildings');
+		setbuildings((prev) => {
+			return prev.filter((building) => building.id !== id);
+		});
+	};
+	return !delSchool ? (
 		<div className="container">
 			<h2 style={{ borderBottom: '1px solid black' }}>Edit School Name</h2>
 			<div>
@@ -93,6 +103,15 @@ export default function EditSchool(props) {
 						type="submit"
 						value="Submit Changes"
 						className="form schoolbutton"
+					></input>
+					<input
+						type="button"
+						value="Delete School"
+						className="form buildingbutton"
+						onClick={() => {
+							Delete(id, 'schools');
+							setdelSchool(true);
+						}}
 					></input>
 				</form>
 			</div>
@@ -124,6 +143,12 @@ export default function EditSchool(props) {
 								type="submit"
 								value="Submit Changes"
 								className="form buildingbutton"
+							></input>
+							<input
+								type="button"
+								value="Delete Building"
+								className="form buildingbutton"
+								onClick={() => del(building.id)}
 							></input>
 						</form>
 						<div className="container">
@@ -174,6 +199,12 @@ export default function EditSchool(props) {
 			<br />
 			<h2 style={{ borderBottom: '1px solid black' }}>Add buildings</h2>
 			<AddBuilding hide={'form'} schoolId={Number(id)}></AddBuilding>
+		</div>
+	) : (
+		<div className="container">
+			<Link to="/" style={{ color: 'black', display: 'inline-block' }}>
+				School deleted, click to leave page
+			</Link>
 		</div>
 	);
 }
