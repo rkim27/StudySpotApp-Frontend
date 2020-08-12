@@ -26,6 +26,13 @@ export default function EditSchool(props) {
 			.then((res) => {
 				setschoolName(res[0].data);
 				setbuildings(res[1].data);
+			})
+			.catch((err) => {
+				if (err.response.status === 404) {
+					setschoolName('404 Not Found');
+				} else if (err.response.status === 500) {
+					setschoolName('500 Error Please Reload');
+				}
 			});
 	}, [id]);
 
@@ -58,6 +65,11 @@ export default function EditSchool(props) {
 						const temp = { ...libraries };
 						temp[buildId] = res.data;
 						setlibraries(temp);
+					})
+					.catch((err) => {
+						if (err.response.status === 500) {
+							alert('500 Error Please Reload');
+						}
 					});
 			}
 		} else {
@@ -68,6 +80,11 @@ export default function EditSchool(props) {
 						const temp = { ...rooms };
 						temp[buildId] = res.data;
 						setrooms(temp);
+					})
+					.catch((err) => {
+						if (err.response.status === 500) {
+							alert('500 Error Please Reload');
+						}
 					});
 			}
 		}
@@ -104,6 +121,7 @@ export default function EditSchool(props) {
 						value="Submit Changes"
 						className="form schoolbutton"
 					></input>
+					<br />
 					<input
 						type="button"
 						value="Delete School"
@@ -112,6 +130,7 @@ export default function EditSchool(props) {
 							Delete(id, 'schools');
 							setdelSchool(true);
 						}}
+						style={{ marginTop: '3px', color: 'red' }}
 					></input>
 				</form>
 			</div>
@@ -149,6 +168,7 @@ export default function EditSchool(props) {
 								value="Delete Building"
 								className="form buildingbutton"
 								onClick={() => del(building.id)}
+								style={{ color: 'red' }}
 							></input>
 						</form>
 						<div className="container">
@@ -198,7 +218,9 @@ export default function EditSchool(props) {
 			})}
 			<br />
 			<h2 style={{ borderBottom: '1px solid black' }}>Add buildings</h2>
-			<AddBuilding hide={'form'} schoolId={Number(id)}></AddBuilding>
+			{schoolName !== '404 Not Found' ? (
+				<AddBuilding hide={'form'} schoolId={Number(id)}></AddBuilding>
+			) : null}
 		</div>
 	) : (
 		<div className="container">

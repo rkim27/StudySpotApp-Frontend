@@ -8,6 +8,7 @@ import School from './components/Search/School';
 import Room from './components/Search/Room';
 import Library from './components/Search/Library';
 import EditSchool from './components/edit_form/EditSchool';
+import SchoolHeader from './components/Search/SchoolHeader';
 
 function App() {
 	return (
@@ -21,9 +22,10 @@ function App() {
 						<Search></Search>
 					</div>
 				</Route>
-				<Route path="/school/:id" component={School}></Route>
-				<Route path="/room/:id" component={Room}></Route>
-				<Route path="/library/:id" component={Library}></Route>
+				<Route path="/school/:sid" component={SchoolHeader}></Route>
+				<Route path="/school/:sid/school" component={School}></Route>
+				<Route path="/school/:sid/room/:id" component={Room}></Route>
+				<Route path="/school/:sid/library/:id" component={Library}></Route>
 				<Route path="/edit/:id" component={EditSchool}></Route>
 				{/*Page to insert schools*/}
 				<Route path="/insert" component={InsertSchool}></Route>

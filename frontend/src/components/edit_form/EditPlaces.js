@@ -112,6 +112,7 @@ export default function EditPlaces(props) {
 									value="Delete Place"
 									className="form librarybutton"
 									onClick={() => del(place.id)}
+									style={{ color: 'red' }}
 								></input>
 								<hr style={{ borderTop: 'dotted 1px', marginBottom: '-2px' }} />
 							</form>

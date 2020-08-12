@@ -7,9 +7,22 @@ export default function Library(props) {
 	const [info, setinfo] = useState({});
 
 	useEffect(() => {
-		axios.get(`http://localhost:3002/search/library/${id}`).then((res) => {
-			setinfo(res.data[0]);
-		});
+		axios
+			.get(`http://localhost:3002/search/library/${id}`)
+			.then((res) => {
+				setinfo(res.data[0]);
+			})
+			.catch((err) => {
+				if (err.response.status === 404) {
+					setinfo((prev) => {
+						return { ...prev, name: '404 Not Found' };
+					});
+				} else if (err.response.status === 500) {
+					setinfo((prev) => {
+						return { ...prev, name: '500 Error Please Reload' };
+					});
+				}
+			});
 	}, [id]);
 	useEffect(() => {
 		axios
@@ -20,8 +33,10 @@ export default function Library(props) {
 					headers: { 'content-Type': 'application/json' },
 				}
 			)
-			.then((res) => {
-				console.log(res);
+			.catch((err) => {
+				if (err.response.status === 500) {
+					alert('500 Error Please Try Again');
+				}
 			});
 	}, [info, id]);
 	const updateAvail = (e) => {
@@ -46,7 +61,6 @@ export default function Library(props) {
 	}
 	return (
 		<div className="container">
-			<h1>Placeholder</h1>
 			<div className="column" style={{ width: '55%' }}>
 				<h2 style={{ textDecoration: 'underline', marginBottom: '1px' }}>
 					{info.name}

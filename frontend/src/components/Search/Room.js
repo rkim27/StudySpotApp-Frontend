@@ -8,7 +8,18 @@ export default function Room(props) {
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3002/search/room/${id}`)
-			.then((res) => setinfo(res.data[0]));
+			.then((res) => setinfo(res.data[0]))
+			.catch((err) => {
+				if (err.response.status === 404) {
+					setinfo((prev) => {
+						return { ...prev, name: '404 Not Found' };
+					});
+				} else if (err.response.status === 500) {
+					setinfo((prev) => {
+						return { ...prev, name: '500 Error Please Reload' };
+					});
+				}
+			});
 	}, [id]);
 	const update = (e) => {
 		e.preventDefault();
@@ -25,13 +36,17 @@ export default function Room(props) {
 					const avail = info.avail === 1 ? 0 : 1;
 					setinfo({ ...info, avail: avail });
 				}
+			})
+			.catch((err) => {
+				if (err.response.status === 500) {
+					alert('500 Error Please Try Again');
+				}
 			});
 	};
 	const color = info.avail === 1 ? 'green' : 'red';
 	const text = info.avail === 1 ? 'Available' : 'Occupied';
 	return (
 		<div className="container">
-			<h1>Placeholder</h1>
 			<div className="column" style={{ width: '55%' }}>
 				<h2 style={{ textDecoration: 'underline', marginBottom: '1px' }}>
 					{info.name}

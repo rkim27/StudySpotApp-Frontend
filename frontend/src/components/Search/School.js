@@ -7,9 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 
 export default function School(props) {
-	const id = props.match.params.id;
+	const id = props.match.params.sid;
 	const [rooms, setrooms] = useState([]);
-	const [schoolName, setschoolName] = useState('');
 	const [libraries, setlibraries] = useState([]);
 	const [buildings, setbuildings] = useState([]);
 	const [fLibraries, setfLibraries] = useState([]);
@@ -18,18 +17,21 @@ export default function School(props) {
 		//onload get school info once
 		axios
 			.all([
-				axios.get(`http://localhost:3002/search/${id}`),
 				axios.get(`http://localhost:3002/search/rooms/${id}`),
 				axios.get(`http://localhost:3002/search/libraries/${id}`),
 				axios.get(`http://localhost:3002/search/buildings/${id}`),
 			])
 			.then((res) => {
-				setrooms(res[1].data);
-				setschoolName(res[0].data);
-				setlibraries(res[2].data);
-				setfRooms(res[1].data);
-				setfLibraries(res[2].data);
-				setbuildings(res[3].data);
+				setrooms(res[0].data);
+				setlibraries(res[1].data);
+				setfRooms(res[0].data);
+				setfLibraries(res[1].data);
+				setbuildings(res[2].data);
+			})
+			.catch((err) => {
+				if (err.response.status === 500) {
+					alert('500 Error Please Reload');
+				}
 			});
 	}, [id]);
 	const filter = (e) => {
@@ -60,7 +62,6 @@ export default function School(props) {
 	//display rooms and libraries, have a drop down menu to filter based on buildings
 	return (
 		<div className="container">
-			<h1 style={{ marginBottom: '1px' }}>{schoolName}</h1>
 			<Link
 				to={`/edit/${id}`}
 				type="button"
@@ -106,7 +107,7 @@ export default function School(props) {
 						return (
 							<div key={room.id}>
 								<Link
-									to={`/room/${room.id}`}
+									to={`/school/${id}/room/${room.id}`}
 									onMouseOver={hover}
 									onMouseOut={noHover}
 									style={{ color: 'black', textDecoration: 'none' }}
@@ -123,7 +124,7 @@ export default function School(props) {
 						return (
 							<div key={library.id}>
 								<Link
-									to={`/library/${library.id}`}
+									to={`/school/${id}/library/${library.id}`}
 									onMouseOver={hover}
 									onMouseOut={noHover}
 									style={{ color: 'black', textDecoration: 'none' }}

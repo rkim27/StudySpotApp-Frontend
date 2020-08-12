@@ -14,5 +14,10 @@ export default function Submit(address, value, setId) {
 			if (setId !== null) {
 				setId(res.data.id); //response is the id of record submitted, set that to current id value
 			}
+		})
+		.catch((err) => {
+			if (err.response.status === 500) {
+				alert('500 Error Please Try Again');
+			}
 		});
 }

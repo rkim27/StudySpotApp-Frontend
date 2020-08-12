@@ -22,7 +22,12 @@ export default function Search() {
 		//onload get all schools onces, store in schools state
 		axios
 			.get('http://localhost:3002/search')
-			.then((res) => setschools(res.data));
+			.then((res) => setschools(res.data))
+			.catch((err) => {
+				if (err.response.status === 500) {
+					alert('500 Error Please Reload');
+				}
+			});
 	}, []);
 
 	const hover = (e) => {
@@ -31,7 +36,6 @@ export default function Search() {
 	const noHover = (e) => {
 		e.target.style.color = 'black';
 	};
-	console.log('render');
 	//display all schools if a search term has been entered, otherwise display filtered results
 	const displayList = search === '' ? schools : filtered;
 	return (
@@ -55,7 +59,7 @@ export default function Search() {
 				return (
 					<div key={school.id}>
 						<Link
-							to={`/school/${school.id}`}
+							to={`/school/${school.id}/school`}
 							onMouseOver={hover}
 							onMouseOut={noHover}
 							style={{ color: 'black', textDecoration: 'none' }}

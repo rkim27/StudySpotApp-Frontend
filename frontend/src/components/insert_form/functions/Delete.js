@@ -9,6 +9,8 @@ export default function Delete(id, table) {
 			data: { tab: table },
 		})
 		.catch((err) => {
-			console.log(err);
+			if (err.response.status === 500) {
+				alert('500 Error Please Try Again');
+			}
 		});
 }
