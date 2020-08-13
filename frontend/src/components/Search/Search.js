@@ -21,7 +21,7 @@ export default function Search() {
 	useEffect(() => {
 		//onload get all schools onces, store in schools state
 		axios
-			.get('http://localhost:3002/search')
+			.get('http://localhost:3002/school')
 			.then((res) => setschools(res.data))
 			.catch((err) => {
 				if (err.response.status === 500) {

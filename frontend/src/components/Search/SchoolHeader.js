@@ -7,7 +7,7 @@ export default function SchoolHeader(props) {
 	const [id] = useState(props.match.params.sid);
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3002/search/${id}`)
+			.get(`http://localhost:3002/school/${id}`)
 			.then((res) => setschoolName(res.data))
 			.catch((err) => {
 				if (err.response.status === 404) {

@@ -17,9 +17,9 @@ export default function School(props) {
 		//onload get school info once
 		axios
 			.all([
-				axios.get(`http://localhost:3002/search/rooms/${id}`),
-				axios.get(`http://localhost:3002/search/libraries/${id}`),
-				axios.get(`http://localhost:3002/search/buildings/${id}`),
+				axios.get(`http://localhost:3002/school/rooms/${id}`),
+				axios.get(`http://localhost:3002/school/libraries/${id}`),
+				axios.get(`http://localhost:3002/school/buildings/${id}`),
 			])
 			.then((res) => {
 				setrooms(res[0].data);

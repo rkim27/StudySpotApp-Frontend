@@ -7,7 +7,7 @@ export default function Room(props) {
 	const [info, setinfo] = useState({});
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3002/search/room/${id}`)
+			.get(`http://localhost:3002/place/room/${id}`)
 			.then((res) => setinfo(res.data[0]))
 			.catch((err) => {
 				if (err.response.status === 404) {
@@ -25,7 +25,7 @@ export default function Room(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`http://localhost:3002/search/updateroom/${id}`,
+				`http://localhost:3002/place/updateroom/${id}`,
 				{ avail: info.avail },
 				{
 					headers: { 'content-Type': 'application/json' },

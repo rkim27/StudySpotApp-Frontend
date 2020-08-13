@@ -20,8 +20,8 @@ export default function EditSchool(props) {
 		//onload get school info once
 		axios
 			.all([
-				axios.get(`http://localhost:3002/search/${id}`),
-				axios.get(`http://localhost:3002/search/buildings/${id}`),
+				axios.get(`http://localhost:3002/school/${id}`),
+				axios.get(`http://localhost:3002/school/buildings/${id}`),
 			])
 			.then((res) => {
 				setschoolName(res[0].data);
@@ -60,7 +60,7 @@ export default function EditSchool(props) {
 		if (library) {
 			if (!(buildId in libraries)) {
 				axios
-					.get(`http://localhost:3002/search/building/libraries/${buildId}`)
+					.get(`http://localhost:3002/building/libraries/${buildId}`)
 					.then((res) => {
 						const temp = { ...libraries };
 						temp[buildId] = res.data;
@@ -75,7 +75,7 @@ export default function EditSchool(props) {
 		} else {
 			if (!(buildId in rooms)) {
 				axios
-					.get(`http://localhost:3002/search/building/rooms/${buildId}`)
+					.get(`http://localhost:3002/building/rooms/${buildId}`)
 					.then((res) => {
 						const temp = { ...rooms };
 						temp[buildId] = res.data;

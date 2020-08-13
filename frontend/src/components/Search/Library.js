@@ -8,7 +8,7 @@ export default function Library(props) {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3002/search/library/${id}`)
+			.get(`http://localhost:3002/place/library/${id}`)
 			.then((res) => {
 				setinfo(res.data[0]);
 			})
@@ -27,7 +27,7 @@ export default function Library(props) {
 	useEffect(() => {
 		axios
 			.post(
-				`http://localhost:3002/search/updatelibrary/${id}`,
+				`http://localhost:3002/place/updatelibrary/${id}`,
 				{ avail: info.numSeats },
 				{
 					headers: { 'content-Type': 'application/json' },
