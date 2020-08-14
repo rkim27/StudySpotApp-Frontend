@@ -100,7 +100,7 @@ body {
 }
 
 .search {
-	width: 400px;
+	width: 70%;
 	height: 35px;
 	outline: 0;
 	border: 0;
@@ -109,7 +109,7 @@ body {
 }
 
 .search:focus {
-	width: 400px;
+	width: 70%;
 	height: 35px;
 	outline: 0;
 	border: 0;
