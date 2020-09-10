@@ -1,4 +1,5 @@
 # StudySpotApp-Frontend (localhost version)
+Developer: Russell Kim, Junior in Computer Engineering at Purdue University (Graduate May 2022)
 
 To see code go to /frontend/src
 
